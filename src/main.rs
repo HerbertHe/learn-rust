@@ -46,6 +46,72 @@ fn function() {
     // 函数表达式不同于函数体, 不能 return
 }
 
+/// 条件语句
+fn if_statement() {
+    let number = 3;
+    if number < 5 {
+        println!("true")
+    }
+    else if number > 0 {
+        println!("1212")
+    }
+    else {
+        println!("false")
+    }
+
+    // 语句里可以使用函数表达式
+    let a = 3;
+    let number = if a > 0 { 1 } else { -1 };
+    println!("{}", number);
+}
+
+/// loop
+fn loop_statement() {
+    // while loop
+    // for loop -> 迭代器遍历
+    let a = [10, 20, 30];
+    for i in 0..3 {
+        println!("a[{}] = {}", i, a[i])
+    }
+
+    for i in a.iter() {
+        println!("{}", i)
+    }
+
+    // loop loop 无限循环特性
+    let a = ["A", "B", "C"];
+    let mut i = 0;
+    let location = loop {
+        let ch = a[i];
+        if ch == "B" {
+            break i;
+        }
+        i += 1;
+    };
+    println!("{}", location)
+}
+
+/// rust的所有权机制
+/// 所有权规则
+/// - Rust 中的每个值都有一个变量，称为其所有者。
+/// - 一次只能有一个所有者。
+/// - 当所有者不在程序运行范围时，该值将被删除。
+/// 数据为堆栈结构
+/// 基本数据类型 int、bool、float、char、仅包含上述类型的 Tuples
+/// 堆数据有赋值失效的问题, 不定长数据
+fn heap_example() {
+    let s1 = String::from("Hello");
+    let s2 = s1;
+    // println!("{}, World", s1);  // × s1已经失效！
+}
+
+/// 克隆
+fn heap_clone() {
+    let s1 = String::from("hello");
+    let s2 = s1.clone();
+    println!("{}, {}", s1, s2);
+}
+
 fn main() {
     println!("你好, 世界!");
     println!("{}", "这是我第一个rust程序");
